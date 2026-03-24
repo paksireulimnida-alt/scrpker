@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - Multi-Modal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="chat-mode">
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="header-info">
+                <h1>AI Chat</h1>
+                <div class="header-controls">
+                    <select id="modelSelect">
+                        <option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash</option>
+                        <option value="google/gemini-2.0-pro-exp-02-05:free">Gemini 2.0 Pro Exp (Free)</option>
+                        <option value="arcee-ai/trinity-large-preview:free">Trinity Large (Text Only)</option>
+                        <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+                    </select>
+                    <div id="usageInfo" class="usage-badge" title="Click to refresh usage">
+                        <span id="usageValue">Loading usage...</span>
+                    </div>
+                </div>
+            </div>
+            <button id="clearChat" class="icon-btn" title="Clear Chat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                </svg>
+            </button>
+        </header>
+
+        <div id="chatThread" class="chat-thread">
+            <!-- Messages will appear here -->
+            <div class="message ai-message">
+                <div class="bubble">Halo! Saya asisten AI Anda. Ada yang bisa saya bantu hari ini?</div>
+            </div>
+        </div>
+
+        <footer class="chat-input-area">
+            <div class="input-wrapper">
+                <div id="imagePreviewContainer" class="chat-image-preview hidden">
+                    <img id="imagePreview" src="" alt="Preview">
+                    <button id="removeImage" class="remove-img-btn">&times;</button>
+                </div>
+
+                <div class="controls">
+                    <label for="imageInput" class="icon-btn" title="Upload Image">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <input type="file" id="imageInput" accept="image/*" class="hidden">
+                    </label>
+                    <textarea id="prompt" rows="1" placeholder="Type a message..."></textarea>
+                    <button id="sendBtn" class="send-btn">
+                        <svg id="sendIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                        <div class="loader-dots hidden"><span></span><span></span><span></span></div>
+                    </button>
+                </div>
+            </div>
+            <div class="api-key-footer">
+                <input type="password" id="apiKey" placeholder="API Key"
+                    value="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">
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

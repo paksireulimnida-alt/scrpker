@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - "20"
+
+dist: focal
+
+cache:
+  npm: true
+  directories:
+    - .cache
+
+addons:
+  chrome: stable
+
+before_install:
+  - export PUPPETEER_EXECUTABLE_PATH=$(which google-chrome-stable)
+
+install:
+  - npm ci
+
+script:
+  - node scraper.js
+
+after_success:
+  - |
+    if [ -f processed_jobs.json ]; then
+      git config --global user.name "Travis CI"
+      git config --global user.email "travis@travis-ci.com"
+      git add processed_jobs.json
+      git diff-index --quiet HEAD || git commit -m "Update job history [skip ci]"
+      git push https://${GITHUB_TOKEN}@github.com/arfizihni29/teljobs.git HEAD:main
+    fi
